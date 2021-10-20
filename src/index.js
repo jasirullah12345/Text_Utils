@@ -5,15 +5,16 @@ import reportWebVitals from "./reportWebVitals";
 import Navbar from "./MyComponents/Navbar";
 import 'bootstrap/dist/css/bootstrap.css';
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-import TextForm from "./MyComponents/TextForm";
+// import TextForm from "./MyComponents/TextForm";
+import About from "./MyComponents/About";
 
 ReactDOM.render(
     <React.StrictMode>
 
         <Navbar title="Text Utils"/>
 
-        <TextForm/>
-
+        {/*<TextForm/>*/}
+<About/>
 
     </React.StrictMode>,
     document.getElementById("root")

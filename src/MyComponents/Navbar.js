@@ -29,6 +29,11 @@ export default function Navbar(props) {
                                     Home
                                 </a>
                             </li>
+                            <li className="nav-item">
+                                <a className="nav-link active" aria-current="page" href="/">
+                                    About
+                                </a>
+                            </li>
                         </ul>
                         <form className="d-flex">
                             <input
