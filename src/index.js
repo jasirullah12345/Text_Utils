@@ -2,19 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import Navbar from "./MyComponents/Navbar";
 import 'bootstrap/dist/css/bootstrap.css';
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-// import TextForm from "./MyComponents/TextForm";
-import About from "./MyComponents/About";
+import App from "./App";
 
 ReactDOM.render(
     <React.StrictMode>
 
-        <Navbar title="Text Utils"/>
-
-        {/*<TextForm/>*/}
-<About/>
+        <App/>
 
     </React.StrictMode>,
     document.getElementById("root")
