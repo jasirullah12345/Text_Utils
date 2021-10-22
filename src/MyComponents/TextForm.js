@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
-export default function TextForm() {
+export default function TextForm(props) {
+
     const [text, setText] = useState("");
 
     const textChange = (event) => {
@@ -9,33 +10,43 @@ export default function TextForm() {
 
     const upperCase = () => {
         setText(text.toUpperCase());
+        props.alert("success","Text converted to uppercase");
     };
 
     const lowerCase = () => {
         setText(text.toLowerCase());
+        props.alert("success","Text converted to lowercase");
     };
 
     const clear = () => {
         setText("");
+        props.alert("success","Text cleared");
     };
 
     const copy = () => {
         setText("copy");
+        props.alert("success","Text copied");
     };
 
     const removeExtraSpaces = () => {
         setText("Remove Extra Spaces.")
+        props.alert("success","Extra spaces removed");
     };
 
     return (
         <>
             <div className="container">
                 <div>
-                    <label htmlFor="text" className="form-label h3 mt-3 mb-3">
+                    <label htmlFor="text"
+                           className={`form-label h3 mt-3 mb-3 text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                         Enter text to manipulate it.
                     </label>
                     <textarea
                         className="form-control"
+                        style={{
+                            backgroundColor: props.mode === "dark" ? "#6c6b6b" : "white",
+                            color: props.mode === "dark" ? "white" : "black"
+                        }}
                         id="text"
                         rows="8"
                         onChange={textChange}
@@ -70,11 +81,11 @@ export default function TextForm() {
                         Copy Text
                     </button>
                     <button type="button" className="btn btn-info mt-3 mx-1"
-                    onClick={removeExtraSpaces}>
+                            onClick={removeExtraSpaces}>
                         Remove Extra Spaces
                     </button>
                 </div>
-                <div className="summary">
+                <div className={`summary  text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                     <h3 className="my-3">Summary of Text</h3>
                     <p>
                         {text.split(" ").length} Words and {text.length} characters.
@@ -83,9 +94,9 @@ export default function TextForm() {
                         {0.008 * text.split(" ").length} Minutes to read this text.
                     </p>
                 </div>
-                <div className="preview">
+                <div className={`preview  text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                     <h3 className="my-3">Preview</h3>
-                    <p>{text}</p>
+                    <p>{text.length > 0 ? text : 'Enter text to preview.'}</p>
                 </div>
             </div>
         </>
