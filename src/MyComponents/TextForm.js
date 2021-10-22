@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
 export default function TextForm(props) {
+
     const [text, setText] = useState("");
 
     const textChange = (event) => {
@@ -9,22 +10,27 @@ export default function TextForm(props) {
 
     const upperCase = () => {
         setText(text.toUpperCase());
+        props.alert("success","Text converted to uppercase");
     };
 
     const lowerCase = () => {
         setText(text.toLowerCase());
+        props.alert("success","Text converted to lowercase");
     };
 
     const clear = () => {
         setText("");
+        props.alert("success","Text cleared");
     };
 
     const copy = () => {
         setText("copy");
+        props.alert("success","Text copied");
     };
 
     const removeExtraSpaces = () => {
         setText("Remove Extra Spaces.")
+        props.alert("success","Extra spaces removed");
     };
 
     return (
