@@ -12,15 +12,15 @@ import {
 const App = () => {
     // States
     const [mode, setMode] = useState("light");
-    const [alertSection, setAlertSection] = useState(null);
+    const [alertData, setAlertData] = useState(null);
 
     const showAlert = (type, msg) => {
-        setAlertSection({
+        setAlertData({
             type: type,
             msg: msg
         });
         setTimeout(() => {
-            setAlertSection(null);
+            setAlertData(null);
         }, 1500);
     };
 
@@ -40,7 +40,7 @@ const App = () => {
         <>
             <Router>
                 <Navbar title="Text Utils" toggleMode={toggleMode} mode={mode}/>
-                <Alert alert={alertSection}/>
+                <Alert alert={alertData}/>
                 <Switch>
                     <Route exact path="/">
                         <TextForm mode={mode} alert={showAlert}/>
