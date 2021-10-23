@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 const About = () => {
+    document.title = "Text Utils - About";
     const [myStyle, setMyStyle] = useState({
         backgroundColor: "white",
         color: "black"
@@ -25,6 +26,7 @@ const About = () => {
         <>
             <div className="container mt-5">
                 <div className="row g-3 border border-1 p-3 rounded" style={myStyle}>
+                <h2>About Us</h2>
                     <div className="col-xs-12">
                         <div className="card">
                             <div className="card-body" style={myStyle}>

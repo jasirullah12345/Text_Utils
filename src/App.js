@@ -2,6 +2,12 @@ import React, {useState} from 'react';
 import Navbar from "./MyComponents/Navbar";
 import TextForm from "./MyComponents/TextForm";
 import Alert from "./MyComponents/Alert";
+import About from "./MyComponents/About";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
 
 const App = () => {
     // States
@@ -32,10 +38,18 @@ const App = () => {
 
     return (
         <>
-            <Navbar title="Text Utils" toggleMode={toggleMode} mode={mode}/>
-            <Alert alert={alertSection}/>
-            <TextForm mode={mode} alert={showAlert}/>
-            {/*<About/>*/}
+            <Router>
+                <Navbar title="Text Utils" toggleMode={toggleMode} mode={mode}/>
+                <Alert alert={alertSection}/>
+                <Switch>
+                    <Route exact path="/">
+                        <TextForm mode={mode} alert={showAlert}/>
+                    </Route>
+                    <Route exact path="/about">
+                        <About/>
+                    </Route>
+                </Switch>
+            </Router>
         </>
     );
 };

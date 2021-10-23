@@ -2,6 +2,8 @@ import React, {useState} from "react";
 
 export default function TextForm(props) {
 
+    document.title = "Text Utils - Home";
+
     const [text, setText] = useState("");
 
     const textChange = (event) => {
@@ -10,27 +12,31 @@ export default function TextForm(props) {
 
     const upperCase = () => {
         setText(text.toUpperCase());
-        props.alert("success","Text converted to uppercase");
+        props.alert("success", "Text converted to uppercase");
     };
 
     const lowerCase = () => {
         setText(text.toLowerCase());
-        props.alert("success","Text converted to lowercase");
+        props.alert("success", "Text converted to lowercase");
     };
 
     const clear = () => {
         setText("");
-        props.alert("success","Text cleared");
+        props.alert("success", "Text cleared");
     };
 
     const copy = () => {
-        setText("copy");
-        props.alert("success","Text copied");
+        let target = document.getElementById("text");
+        target.select();
+        target.setSelectionRange(0, 9999);
+        navigator.clipboard.writeText(target.value);
+        props.alert("success", "Text copied");
     };
 
     const removeExtraSpaces = () => {
-        setText("Remove Extra Spaces.")
-        props.alert("success","Extra spaces removed");
+        let target = text.split(/[ ]+/);
+        setText(target.join(" "));
+        props.alert("success", "Extra spaces removed");
     };
 
     return (
