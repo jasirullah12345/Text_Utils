@@ -1,31 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const About = () => {
+const About = (props) => {
     document.title = "Text Utils - About";
-    const [myStyle, setMyStyle] = useState({
-        backgroundColor: "white",
-        color: "black"
-    });
-    const [btnText, setBtnText] = useState("Enable Dark Mode");
-    const toggleMode = () => {
-        if (myStyle.backgroundColor === "white") {
-            setMyStyle({
-                backgroundColor: "black",
-                color: "white"
-            });
-            setBtnText("Enable Light Mode");
-        } else {
-            setMyStyle({
-                backgroundColor: "white",
-                color: "black"
-            });
-            setBtnText("Enable Dark Mode");
-        }
+    let myStyle = {
+        backgroundColor: props.mode==="dark" ?"#213a4e":"white",
+        color:  props.mode==="dark" ?"white":"black"
     };
     return (
         <>
             <div className="container mt-5">
-                <div className="row g-3 border border-1 p-3 rounded" style={myStyle}>
+                <div className="row g-3 border border-1 p-3 pb-4 rounded" style={myStyle}>
                 <h2>About Us</h2>
                     <div className="col-xs-12">
                         <div className="card">
@@ -52,12 +36,6 @@ const About = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            {/*Toggle Button*/}
-            <div className="container mt-3">
-                <button type="button" className="btn btn-outline-dark btn-sm" onClick={toggleMode}>
-                    {btnText}
-                </button>
             </div>
         </>
     );

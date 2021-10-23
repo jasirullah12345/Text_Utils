@@ -16,3 +16,6 @@ code {
     outline: none !important;
     box-shadow: none !important;
 }
+.active{
+    text-decoration: underline !important;
+}

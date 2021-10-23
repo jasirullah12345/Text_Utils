@@ -47,7 +47,7 @@ export default function TextForm(props) {
                     <textarea
                         className="form-control"
                         style={{
-                            backgroundColor: props.mode === "dark" ? "#0d5ba3" : "white",
+                            backgroundColor: props.mode === "dark" ? "#0263bd" : "white",
                             color: props.mode === "dark" ? "white" : "black"
                         }}
                         id="text"

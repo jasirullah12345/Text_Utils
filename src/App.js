@@ -46,7 +46,7 @@ const App = () => {
                         <TextForm mode={mode} alert={showAlert}/>
                     </Route>
                     <Route exact path="/about">
-                        <About/>
+                        <About mode={mode}/>
                     </Route>
                 </Switch>
             </Router>
