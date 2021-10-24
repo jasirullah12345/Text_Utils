@@ -2,6 +2,8 @@ import React, {useState} from "react";
 
 export default function TextForm(props) {
 
+    document.title = "Text Utils - Home";
+
     const [text, setText] = useState("");
 
     const textChange = (event) => {
@@ -10,27 +12,28 @@ export default function TextForm(props) {
 
     const upperCase = () => {
         setText(text.toUpperCase());
-        props.alert("success","Text converted to uppercase");
+        props.alert("success", "Text converted to uppercase");
     };
 
     const lowerCase = () => {
         setText(text.toLowerCase());
-        props.alert("success","Text converted to lowercase");
+        props.alert("success", "Text converted to lowercase");
     };
 
     const clear = () => {
         setText("");
-        props.alert("success","Text cleared");
+        props.alert("danger", "Text cleared");
     };
 
     const copy = () => {
-        setText("copy");
-        props.alert("success","Text copied");
+        navigator.clipboard.writeText(text);
+        props.alert("success", "Text copied");
     };
 
     const removeExtraSpaces = () => {
-        setText("Remove Extra Spaces.")
-        props.alert("success","Extra spaces removed");
+        let target = text.split(/[ ]+/);
+        setText(target.join(" "));
+        props.alert("success", "Extra spaces removed");
     };
 
     return (
@@ -44,7 +47,7 @@ export default function TextForm(props) {
                     <textarea
                         className="form-control"
                         style={{
-                            backgroundColor: props.mode === "dark" ? "#6c6b6b" : "white",
+                            backgroundColor: props.mode === "dark" ? "#0263bd" : "white",
                             color: props.mode === "dark" ? "white" : "black"
                         }}
                         id="text"
@@ -54,33 +57,38 @@ export default function TextForm(props) {
                     />
                     <button
                         type="button"
-                        className="btn btn-primary mt-3 mx-1 ms-0"
+                        className="btn btn-sm btn-primary mt-3 mx-1 ms-0"
                         onClick={upperCase}
+                        disabled={text.length === 0}
                     >
                         Convert to Uppercase
                     </button>
                     <button
                         type="button"
-                        className="btn btn-success mt-3 mx-1"
+                        className="btn btn-sm btn-success mt-3 mx-1"
                         onClick={lowerCase}
+                        disabled={text.length === 0}
                     >
                         Convert to Lowercase
                     </button>
                     <button
                         type="button"
-                        className="btn btn-danger mt-3 mx-1"
+                        className="btn btn-sm btn-danger mt-3 mx-1"
                         onClick={clear}
+                        disabled={text.length === 0}
                     >
                         Clear Text
                     </button>
                     <button
                         type="button"
-                        className="btn btn-warning mt-3 mx-1"
+                        className="btn btn-sm btn-warning mt-3 mx-1"
                         onClick={copy}
+                        disabled={text.length === 0}
                     >
                         Copy Text
                     </button>
-                    <button type="button" className="btn btn-info mt-3 mx-1"
+                    <button type="button" className="btn btn-sm btn-info mt-3 mx-1"
+                            disabled={text.length === 0}
                             onClick={removeExtraSpaces}>
                         Remove Extra Spaces
                     </button>
@@ -88,15 +96,21 @@ export default function TextForm(props) {
                 <div className={`summary  text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                     <h3 className="my-3">Summary of Text</h3>
                     <p>
-                        {text.split(" ").length} Words and {text.length} characters.
+                        {text.split(/\s+/g).filter((element) => {
+                            return element.length !== 0
+                        }).length} Words and {text.length} characters.
                     </p>
                     <p>
-                        {0.008 * text.split(" ").length} Minutes to read this text.
+                        {0.008 * text.split(/\s+/g).filter((element) => {
+                            return element.length !== 0
+                        }).length} Minutes to read this text.
                     </p>
                 </div>
                 <div className={`preview  text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
                     <h3 className="my-3">Preview</h3>
-                    <p>{text.length > 0 ? text : 'Enter text to preview.'}</p>
+                    <p>{text.split(/\s+/g).filter((element) => {
+                        return element.length !== 0
+                    }).length > 0 ? text : 'Enter text to preview.'}</p>
                 </div>
             </div>
         </>
